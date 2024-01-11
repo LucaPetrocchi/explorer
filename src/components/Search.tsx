@@ -38,14 +38,14 @@ export default function Search() {
         placeholder="Input tx hash..."
       />
       { value != '' 
-      ? <button 
-          type="button"
-          className="absolute right top-[50%] translate-y-[-50%] translate-x-[-30px]"
-          onClick={clearValue}
-        >
-          TET
-        </button>
-      : null}
+        ? <button 
+            type="button"
+            className="absolute right top-[50%] translate-y-[-50%] translate-x-[-30px]"
+            onClick={clearValue}
+          >
+            TET
+          </button>
+        : null }
 
 
     </form>

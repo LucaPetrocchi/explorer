@@ -1,17 +1,17 @@
 import { useRef } from "react";
-import { transaction } from "../mockdata"
+import { Transaction } from "../mockdata"
 import { useNavigate } from "react-router-dom";
 import copy from "copy-to-clipboard";
 
-type explorerProps = {
-  data: transaction[]
+type ExplorerProps = {
+  data: Transaction[]
 }
 
-type cardProps = {
-  transaction: transaction;
+type CardProps = {
+  transaction: Transaction;
 }
 
-export default function Explorer({ data }: explorerProps) {
+export default function Explorer({ data }: ExplorerProps) {
   return (
     <>
     <table className="w-full">
@@ -42,7 +42,7 @@ export default function Explorer({ data }: explorerProps) {
 }
 
 
-function TransactionCard({ transaction }: cardProps) {
+function TransactionCard({ transaction }: CardProps) {
   const navigate = useNavigate()
   const hashRef = useRef<null | HTMLParagraphElement>(null)
 
@@ -69,7 +69,7 @@ function TransactionCard({ transaction }: cardProps) {
         >
           <div className="flex flex-row justify-between">
             <p 
-              className="truncate text-ellipsis overflow-hidden w-3/4"
+              className="truncate w-3/4"
               ref={hashRef}
             >
               {transaction.hashTx}

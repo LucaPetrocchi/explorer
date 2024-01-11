@@ -1,18 +1,19 @@
-type transfer = "solana" | "picasso"
+type Transfer = "solana" | "picasso"
 
-type txStatus = "confirmed" | "pending" | "failed"
+type TxStatus = "confirmed" | "pending" | "failed"
 
-export type transaction = {
+export type Transaction = {
   hashTx: string;
-  transferTo: transfer;
+  transferTo: Transfer;
   hashTo: string;
-  transferFrom: transfer;
+  transferFrom: Transfer;
   hashFrom: string;
   amount: number;
   currency: string;
   fees: number;
   timestamp: string;
-  status: txStatus;
+  status: TxStatus;
+  completionTime: string | null;
 }
 
 export async function getData() {
@@ -23,7 +24,7 @@ export async function getDataByHash(hashTx: string | undefined) {
   return data.find(transaction => transaction.hashTx == hashTx)
 }
 
-const data: transaction[] = [
+const data: Transaction[] = [
   {
     hashTx: "44454EC07B4F8F2E00FE1E442810855A47F5570415550C9D6D52A16C69FE98E3",
     transferTo: 'picasso',
@@ -33,8 +34,9 @@ const data: transaction[] = [
     amount: 248,
     currency: "PICA",
     fees: 0.002,
-    timestamp: "19/07/2023",
-    status: 'confirmed'
+    timestamp: "2023-07-19 20:33:02",
+    status: 'confirmed',
+    completionTime: "2023-07-19 22:09:03",
   },
   {
     hashTx: "7DFC7C698003E2C1605A54E7418886D77A1AF156473B6328AC3D2C8098F1001D",
@@ -45,8 +47,9 @@ const data: transaction[] = [
     amount: 248,
     currency: "SOL",
     fees: 0.002,
-    timestamp: "19/07/2023",
-    status: 'pending'
+    timestamp: "2023-07-19 21:17:32",
+    status: 'pending',
+    completionTime: null,
   },
   {
     hashTx: "98DD4953B88D7B6E767F0E9AEB8D15FF4F1CB269A17CB15F6906835F9572B7C9",
@@ -57,8 +60,9 @@ const data: transaction[] = [
     amount: 248,
     currency: "SEI",
     fees: 0.002,
-    timestamp: "19/07/2023",
-    status: 'failed'
+    timestamp: "2023-07-19 11:12:13",
+    status: 'failed',
+    completionTime: null,
   },
   {
     hashTx: "ECF4F79CE36282AA91D46B9086CD3E803ACD0035D9E83E67CEC561123A58079C",
@@ -69,8 +73,9 @@ const data: transaction[] = [
     amount: 248,
     currency: "DOT",
     fees: 0.002,
-    timestamp: "19/07/2023",
-    status: 'confirmed'
+    timestamp: "2023-07-19 13:14:15",
+    status: 'confirmed',
+    completionTime: "2023-07-20 01:02:33"
   },
   {
     hashTx: "D0F192EDBD343DB0F1870DE1B8CD50C00E8CE76481041EAC15A167D135695741",
@@ -81,8 +86,9 @@ const data: transaction[] = [
     amount: 248,
     currency: "SOL",
     fees: 0.002,
-    timestamp: "19/07/2023",
-    status: 'confirmed'
+    timestamp: "2023-07-19 16:17:18",
+    status: 'confirmed',
+    completionTime: "2023-07-19 17:00:00"
   },
 ]
 

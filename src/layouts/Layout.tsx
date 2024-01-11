@@ -78,7 +78,7 @@ const navOptions = [
 export default function Layout() {
   return (
     <>
-      <div className="bg-slate-900 text-white flex-col justify-center align-middle w-full h-screen pb-5">
+      <div className="bg-slate-900 text-white flex-col justify-center align-middle w-full h-dvh pb-5">
         {/* <h1 className="text-3xl font-bold underline">AAAAAAAAAAA</h1> */}
         <Navbar options={navOptions} />
         <div className="h-4/5 p-5 mx-28 mt-10 bg-gray-700">
