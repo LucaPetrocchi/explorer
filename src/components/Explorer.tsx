@@ -1,7 +1,7 @@
-import { useRef } from "react";
 import { Transaction } from "../mockdata"
 import { useNavigate } from "react-router-dom";
-import copy from "copy-to-clipboard";
+import DateSince from "./DateSince";
+import Hash from "./Hash";
 
 type ExplorerProps = {
   data: Transaction[]
@@ -44,19 +44,9 @@ export default function Explorer({ data }: ExplorerProps) {
 
 function TransactionCard({ transaction }: CardProps) {
   const navigate = useNavigate()
-  const hashRef = useRef<null | HTMLParagraphElement>(null)
 
   function handleClick() {
     navigate(`/transaction/${transaction.hashTx}`)
-  }
-
-  function copyHash(e: React.MouseEvent<HTMLButtonElement, MouseEvent>    ) {
-    let hash = hashRef.current?.textContent
-    e.stopPropagation()
-    console.log(hash)
-    if (hash) {
-      copy(hash)
-    }
   }
 
   return (
@@ -67,18 +57,7 @@ function TransactionCard({ transaction }: CardProps) {
         <td 
           className="explorer-table-cell-custom"
         >
-          <div className="flex flex-row justify-between">
-            <p 
-              className="truncate w-3/4"
-              ref={hashRef}
-            >
-              {transaction.hashTx}
-            </p>
-            <button 
-              type="button"
-              onClick={copyHash}
-            >b</button>
-          </div>
+          <Hash className="truncate w-3/4">{transaction.hashTx}</Hash>
         </td>
         <td
           className="explorer-table-cell-custom"
@@ -93,7 +72,7 @@ function TransactionCard({ transaction }: CardProps) {
         <td
           className="explorer-table-cell-custom"
         >
-          {transaction.timestamp}
+          <DateSince timestamp={transaction.timestamp} />
         </td>
         <td
           className="explorer-table-cell-custom"

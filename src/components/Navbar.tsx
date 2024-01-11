@@ -89,7 +89,7 @@ function NavOption({ icon, name, subOptions }: NavOptionProps) {
 function NavSubOption({ subOptions }: NavSubOptionProps) {
   return (
     <div 
-      className="dropdown-menu absolute right-0"
+      className="dropdown-menu absolute right-0 w-[100px]"
       onClick={
         (e) => {e.stopPropagation()}
       }
