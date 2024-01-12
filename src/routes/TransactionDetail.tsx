@@ -1,30 +1,38 @@
-import { Suspense } from "react";
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { LoaderFunctionArgs, useLoaderData, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { getDataByHash } from "../mockdata"
+import { Transaction } from "../mockdata";
 import DateSince from "../components/DateSince";
 import Hash from "../components/Hash";
 
 type Data = Awaited<ReturnType<typeof getDataByHash>>
 
-export async function transactionLoader({ params }: LoaderFunctionArgs<string>) {
-  const data: Data = await getDataByHash(params.hashTx)
+// export async function transactionLoader({ params }: LoaderFunctionArgs<string>) {
+//   const data: Data = await getDataByHash(params.hashTx)
 
-  if (data) {
-    return data
-  } else {
-    throw new Error("Could not be found")
-  }
+//   if (data) {
+//     return data
+//   } else {
+//     throw new Error("Could not be found")
+//   }
 
-}
+// }
 
 export default function TransactionDetail() {
-  const data = useLoaderData() as Awaited<ReturnType<typeof transactionLoader>>
+  // const data = useLoaderData() as Awaited<ReturnType<typeof transactionLoader>>
 
-  return (
-    <Suspense
-      fallback={<p>LOADING...
-      </p>}
-    >
+  const params = useParams<{ hashTx: string }>()
+
+  const [data, setData] = useState<Transaction | null>()
+
+  useEffect(() => {
+    if (params.hashTx) {
+      getDataByHash(params.hashTx).then((data) => { setData(data) })
+    }
+  })
+
+  if (data) {
+    return (
       <div className="grid grid-cols-12 columns-sm gap-2 w-full text-center">
         <div className="col-span-12 truncate">
           <Hash className="truncate">{data.hashTx}</Hash>
@@ -61,6 +69,6 @@ export default function TransactionDetail() {
           }
         </div>
       </div>
-    </Suspense>
-  )
+    )
+  }
 }

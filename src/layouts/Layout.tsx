@@ -20,6 +20,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Search from "../components/Search";
 import "../index.css"
+import { Suspense } from "react";
 
 const navOptions = [
   {

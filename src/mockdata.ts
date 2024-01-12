@@ -16,20 +16,21 @@ export type Transaction = {
   completionTime: string | null;
 }
 
-async function fakeDelay() {
-  return new Promise(res => {
-    setTimeout(res, 2000)
+
+export async function getData(): Promise<Transaction[]> {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(data), 1000)
   })
 }
 
-export async function getData() {
-  await fakeDelay()
-  return data
-}
-
-export async function getDataByHash(hashTx: string | undefined) {
-  await fakeDelay()
-  return data.find(transaction => transaction.hashTx == hashTx)
+export async function getDataByHash(hashTx: string): Promise<Transaction | undefined> {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(
+      data.find(transaction => transaction.hashTx == hashTx)
+    ), 2000)
+  })
+  
+  
 }
 
 const data: Transaction[] = [

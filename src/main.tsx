@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Layout from './layouts/Layout'
-import Root, { rootLoader } from './routes/Root'
-import TransactionDetail, { transactionLoader } from './routes/TransactionDetail'
+import Root from './routes/Root'
+import TransactionDetail from './routes/TransactionDetail'
 import ErrorPage from './error-page'
 
 const router = createBrowserRouter([
@@ -13,15 +13,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <Root />,
-        loader: rootLoader,
-      },
-      {
-        path: "transaction/:hashTx",
-        element: <TransactionDetail />,
-        loader: transactionLoader,
-      }
+        errorElement: <ErrorPage/>,
+        children: [{
+          path: "/",
+          element: <Root />,
+          // loader: rootLoader,
+        },
+        {
+          path: "transaction/:hashTx",
+          element: <TransactionDetail />,
+          // loader: transactionLoader,
+        }]
+    }
     ],
   }
 ])
