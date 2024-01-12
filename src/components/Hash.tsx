@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard"
 import { useRef } from "react"
 
 type HashProps = {
-  children: string | undefined;
+  children: string;
 } & React.ComponentPropsWithoutRef<"p">;
 
 

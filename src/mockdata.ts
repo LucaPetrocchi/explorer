@@ -16,11 +16,19 @@ export type Transaction = {
   completionTime: string | null;
 }
 
+async function fakeDelay() {
+  return new Promise(res => {
+    setTimeout(res, 2000)
+  })
+}
+
 export async function getData() {
+  await fakeDelay()
   return data
 }
 
 export async function getDataByHash(hashTx: string | undefined) {
+  await fakeDelay()
   return data.find(transaction => transaction.hashTx == hashTx)
 }
 

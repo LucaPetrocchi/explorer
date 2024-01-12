@@ -21,9 +21,10 @@ export default function Explorer({ data }: ExplorerProps) {
             'To | From', 
             'Amount', 
             'Timestamp', 
-            'Status'].map((text) => {
+            'Status'].map((text, index) => {
               return (
               <th
+                key={index}
                 className="max-w-[50px] text-left border-black border-solid border-2"
               >
                 {text}

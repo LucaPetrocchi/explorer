@@ -18,6 +18,7 @@ import { IoLogoDiscord } from "react-icons/io5"
 
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
+import Search from "../components/Search";
 import "../index.css"
 
 const navOptions = [
@@ -82,6 +83,7 @@ export default function Layout() {
         {/* <h1 className="text-3xl font-bold underline">AAAAAAAAAAA</h1> */}
         <Navbar options={navOptions} />
         <div className="h-4/5 p-5 mx-28 mt-10 bg-gray-700">
+          <Search />
           <Outlet />
         </div>
       </div>
