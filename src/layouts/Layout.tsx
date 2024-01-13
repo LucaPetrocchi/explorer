@@ -20,7 +20,6 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Search from "../components/Search";
 import "../index.css"
-import { Suspense } from "react";
 
 const navOptions = [
   {
@@ -80,10 +79,10 @@ const navOptions = [
 export default function Layout() {
   return (
     <>
-      <div className="bg-slate-900 text-white flex-col justify-center align-middle w-full h-dvh pb-5">
+      <div className="bg-neutral-950 text-white flex-col justify-center align-middle w-full min-h-screen h-fit pb-5">
         {/* <h1 className="text-3xl font-bold underline">AAAAAAAAAAA</h1> */}
         <Navbar options={navOptions} />
-        <div className="h-4/5 p-5 mx-28 mt-10 bg-gray-700">
+        <div className="border-neutral-700 border-2 rounded-3xl shadow-[0_0px_6px] shadow-white min-h-[800px] flex flex-col p-5 mx-28 mt-10 mb-6">
           <Search />
           <Outlet />
         </div>

@@ -24,10 +24,13 @@ export async function getData(): Promise<Transaction[]> {
 }
 
 export async function getDataByHash(hashTx: string): Promise<Transaction | undefined> {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(
-      data.find(transaction => transaction.hashTx == hashTx)
-    ), 2000)
+  
+  let d = data.find(transaction => transaction.hashTx == hashTx)
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(d)
+    }, 2000)
   })
   
   

@@ -1,9 +1,10 @@
 import { useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export default function Search() {
   const inputRef = useRef<null | HTMLInputElement>()
   const [value, setValue] = useState('')
+  const location = useLocation()
   const navigate = useNavigate()
 
   const hashrgxp = new RegExp("^[a-fA-F0-9]{64}$")
@@ -13,14 +14,17 @@ export default function Search() {
     inputRef.current?.blur()
   }
 
-  function handleSubmit() {
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
     let test = hashrgxp.test(value)
-    if (test) {
-      navigate(`/transaction/${value}`)
+    let navTo = `/transaction/${value}`
+
+    if (test && navTo != location.pathname) {
+      navigate(navTo)
     } else {
       console.log("EPIC FAIL")
     }
-    
   }
 
   return (

@@ -1,74 +1,38 @@
-import { LoaderFunctionArgs, useLoaderData, useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getDataByHash } from "../mockdata"
 import { Transaction } from "../mockdata";
-import DateSince from "../components/DateSince";
-import Hash from "../components/Hash";
+import TransactionBox from "../components/TransactionBox";
+import Loading from "../components/Loading";
+import ErrorPage from "../error-page";
 
-type Data = Awaited<ReturnType<typeof getDataByHash>>
-
-// export async function transactionLoader({ params }: LoaderFunctionArgs<string>) {
-//   const data: Data = await getDataByHash(params.hashTx)
-
-//   if (data) {
-//     return data
-//   } else {
-//     throw new Error("Could not be found")
-//   }
-
-// }
 
 export default function TransactionDetail() {
-  // const data = useLoaderData() as Awaited<ReturnType<typeof transactionLoader>>
 
   const params = useParams<{ hashTx: string }>()
 
   const [data, setData] = useState<Transaction | null>()
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
+    setLoading(true)
     if (params.hashTx) {
-      getDataByHash(params.hashTx).then((data) => { setData(data) })
+      getDataByHash(params.hashTx).then((data) => {
+        setData(data)
+        setLoading(false)
+      })
     }
-  })
+  }, [params])
 
-  if (data) {
-    return (
-      <div className="grid grid-cols-12 columns-sm gap-2 w-full text-center">
-        <div className="col-span-12 truncate">
-          <Hash className="truncate">{data.hashTx}</Hash>
-        </div>
+  return (
+    <>
+      {isLoading 
+        ? <Loading />
+        : data
+          ? <TransactionBox data={data} />
+          : <ErrorPage />
+      }
+    </>
+  )
 
-        <div className="col-span-5">{data.currency} </div>
-        <div className="col-span-2"> {data.amount}</div>
-        <div className="col-span-5">{data.fees}</div>
-
-        <div className="col-span-5 truncate flex flex-col">
-          <Hash className="truncate">{data.hashFrom}</Hash>
-          <p>{data.transferFrom}</p>
-        </div>
-        <div className="col-span-2">{`->`}</div>
-        <div className="col-span-5 flex flex-col">
-          <Hash className="truncate">{data.hashTo}</Hash>
-          <p>{data.transferTo}</p>
-        </div>
-
-        <div className="col-span-2">{data.status}</div>
-        <div className="col-span-5">
-          {data.timestamp
-            ? <DateSince timestamp={data.timestamp} />
-            : 'N/A'
-          }
-        </div>
-        <div className="col-span-5">
-          {data.status === "pending"
-            ? <DateSince timestamp={data.timestamp} />
-            : data.status === "confirmed" && data.completionTime
-              ? <DateSince timestamp={data.completionTime} />
-              : 'N/A'
-
-          }
-        </div>
-      </div>
-    )
-  }
 }

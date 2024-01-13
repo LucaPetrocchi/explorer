@@ -1,25 +1,32 @@
 import Explorer from "../components/Explorer";
 import { Transaction, getData } from "../mockdata";
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import ErrorPage from "../error-page";
 
-// type Data = Awaited<ReturnType<typeof getData>>
-
-// export async function rootLoader() {
-//   const data: Data = await getData();
-//   return data
-// }
 
 export default function Root() {
-  // const data = useLoaderData() as Awaited<ReturnType<typeof rootLoader>>
   const [data, setData] = useState<Transaction[] | null>()
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    getData().then((data) => {setData(data)})
-  })
+    setLoading(true)
+    getData().then((data) => {
+      setData(data)
+      setLoading(false)
+    })
+  }, [])
 
-  if (data) {
-    return (
-      <Explorer data={data} />
-    )
-  }
+
+  return (
+    <>
+      {isLoading 
+        ? <Loading />
+        : data
+          ? <Explorer data={data} />
+          : <ErrorPage />
+      
+      }
+    </>
+  )
 }

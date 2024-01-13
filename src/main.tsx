@@ -17,12 +17,10 @@ const router = createBrowserRouter([
         children: [{
           path: "/",
           element: <Root />,
-          // loader: rootLoader,
         },
         {
           path: "transaction/:hashTx",
           element: <TransactionDetail />,
-          // loader: transactionLoader,
         }]
     }
     ],
