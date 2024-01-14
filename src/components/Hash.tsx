@@ -1,6 +1,7 @@
 import copy from "copy-to-clipboard"
 import { useRef } from "react"
 import { FaCopy } from "react-icons/fa";
+import Tooltip from "./Tooltip";
 
 type HashProps = {
   children: string;
@@ -26,10 +27,11 @@ export default function Hash({ children, ...props }: HashProps) {
       </p>
       <button
         type="button"
-        className="right"
+        className="right group relative"
         onClick={copyHash}
       >
         <FaCopy size={15} />
+        <Tooltip text="Copy to Clipboard" position="bottom-[-6px] left-6 hover:left-32" />
       </button>
     </div>
   )

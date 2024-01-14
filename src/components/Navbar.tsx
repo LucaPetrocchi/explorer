@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, cloneElement } from "react";
+import Tooltip from "./Tooltip";
 
 type NavSubOptionProps = {
   subOptions: NavSubOptions[]
@@ -75,19 +76,12 @@ function NavOption({ icon, name, subOptions }: NavOptionProps) {
       <button
         className="bg-gray-500 p-3 w-fit h-fit 
         flex align-middle 
-        hover:scale-[1.1] transition-all
+        hover:scale-[1.1]
+        transition-all
         group"
       >
         {icon}
-        <span
-          className="absolute right-6 top-0 pointer-events-none
-          scale-0 group-hover:scale-100 group-hover:right-14
-          w-auto p-2 m-2 
-          text-white bg-neutral-900 
-          transition-all"
-        >
-          {name}
-        </span>
+        <Tooltip text={name} position="right-6 top-0 mt-2 group-hover:right-16" />
       </button>
 
       {isClicked

@@ -2,6 +2,7 @@ import { Transaction } from "../mockdata"
 import { useNavigate } from "react-router-dom";
 import DateSince from "./DateSince";
 import Hash from "./Hash";
+import TransactionStatus from "./TransactionStatus";
 
 type ExplorerProps = {
   data: Transaction[]
@@ -14,9 +15,10 @@ type CardProps = {
 export default function Explorer({ data }: ExplorerProps) {
   return (
     <>
-      <table className="w-full">
+    <div className="rounded-3xl overflow-hidden">
+      <table className="w-full text-center">
         <thead>
-          <tr>
+          <tr className="hover:bg-neutral-800">
             {['Tx Hash',
               'To | From',
               'Amount',
@@ -25,7 +27,10 @@ export default function Explorer({ data }: ExplorerProps) {
                 return (
                   <th
                     key={index}
-                    className="max-w-[50px] text-left border-black border-solid border-2"
+                    className="max-w-[50px] 
+                    border-neutral-600 border-t-0 
+                    border-solid border-[1px]
+                    first:border-l-0 last:border-r-0"
                   >
                     {text}
                   </th>)
@@ -40,6 +45,7 @@ export default function Explorer({ data }: ExplorerProps) {
           })}
         </tbody>
       </table>
+      </div>
     </>
   )
 }
@@ -54,7 +60,7 @@ function TransactionCard({ transaction }: CardProps) {
 
   return (
     <tr
-      className="hover:bg-gray-500 cursor-pointer"
+      className="hover:bg-neutral-800 cursor-pointer"
       onClick={handleClick}
     >
       <td
@@ -80,7 +86,9 @@ function TransactionCard({ transaction }: CardProps) {
       <td
         className="explorer-table-cell-custom"
       >
-        {transaction.status}
+        <div className="w-full flex justify-center">
+          <TransactionStatus status={transaction.status} />
+        </div>
       </td>
     </tr>
   )

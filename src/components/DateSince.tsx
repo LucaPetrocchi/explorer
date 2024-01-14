@@ -17,7 +17,7 @@ export default function DateSince({ timestamp }: DateSinceProps) {
     return (
       <p>
         {i.years ? `${i.years}y ` : null}
-        {i.months ? `${i.months}m ` : null}
+        {i.months ? `${i.months}mo ` : null}
         {i.days ? `${i.days}d` : null}
       </p>
     )

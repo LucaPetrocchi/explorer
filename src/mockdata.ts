@@ -1,6 +1,6 @@
 type Transfer = "solana" | "picasso"
 
-type TxStatus = "confirmed" | "pending" | "failed"
+export type TxStatus = "confirmed" | "pending" | "failed"
 
 export type Transaction = {
   hashTx: string;
