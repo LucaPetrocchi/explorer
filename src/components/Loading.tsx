@@ -2,7 +2,7 @@
 
 export default function Loading() {
   return (
-    <div className="w-full h-5/6 flex justify-center align-middle">
+    <div className="w-full h-5/6 my-auto flex justify-center align-middle">
       <div className="
       flex justify-center align-middle origin-[50%_68%]
       w-0 h-0 self-center mb-[40px]

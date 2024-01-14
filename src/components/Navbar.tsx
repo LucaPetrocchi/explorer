@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, cloneElement } from "react";
 import Tooltip from "./Tooltip";
+import { Link } from "react-router-dom";
 
 type NavSubOptionProps = {
   subOptions: NavSubOptions[]
@@ -24,7 +25,11 @@ type NavbarProps = {
 export default function Navbar({ options }: NavbarProps) {
   return (
     <nav className="flex flex-row h-24 w-full px-5 align-middle justify-between bg-black border-b-gray-700 border-b-[1px]">
-      <h1 className="self-center text-2xl">EXPLORER</h1>
+      
+        <h1 className="self-center text-2xl">
+          <Link to={`/`}>EXPLORER</Link>
+        </h1>
+    
       <div className="flex flex-row h-fit space-x-5 justify-between self-center">
         {options.map((op) => {
           return (

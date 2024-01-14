@@ -1,10 +1,10 @@
-import { useRouteError } from "react-router-dom"
 
 export default function ErrorPage() {
-  const error = useRouteError()
   return (
-    <div>
-      ERROR! { (error as Error).message || (error as {statusText?: string})?.statusText} 
+    <div className="my-auto flex align-middle justify-center text-center">
+      <p className="">
+        404 Not Found
+      </p>
     </div>
   )
 }

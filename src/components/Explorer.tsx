@@ -28,6 +28,7 @@ export default function Explorer({ data }: ExplorerProps) {
                   <th
                     key={index}
                     className="max-w-[50px] 
+                    hidden sm:table-cell
                     border-neutral-600 border-t-0 
                     border-solid border-[1px]
                     first:border-l-0 last:border-r-0"
@@ -79,7 +80,7 @@ function TransactionCard({ transaction }: CardProps) {
         {transaction.amount} {transaction.currency}
       </td>
       <td
-        className="explorer-table-cell-custom"
+        className="explorer-table-cell-custom hidden sm:table-cell"
       >
         <DateSince timestamp={transaction.timestamp} />
       </td>

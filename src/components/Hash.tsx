@@ -18,7 +18,7 @@ export default function Hash({ children, ...props }: HashProps) {
   }
 
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row gap-2 relative" >
       <p
         ref={hashRef}
         {...props}
@@ -31,7 +31,7 @@ export default function Hash({ children, ...props }: HashProps) {
         onClick={copyHash}
       >
         <FaCopy size={15} />
-        <Tooltip text="Copy to Clipboard" position="bottom-[-6px] right-6" />
+        <Tooltip text="Copy to Clipboard" position="bottom-[-45px] left-[-65px]" />
       </button>
     </div>
   )
