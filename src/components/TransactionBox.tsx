@@ -11,7 +11,7 @@ export default function TransactionBox({ data }: TransactionBoxProps) {
   return (
     <div className="grid grid-cols-12 columns-sm gap-2 text-center">
       <div className="col-span-12 truncate flex justify-center">
-        <Hash className="truncate w-full mr-1">{data.hashTx}</Hash>
+        <Hash className="truncate w-full">{data.hashTx}</Hash>
       </div>
 
       <div className="col-span-5">{data.currency} </div>

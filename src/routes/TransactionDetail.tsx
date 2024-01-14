@@ -1,4 +1,4 @@
-import { redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getDataByHash } from "../mockdata"
 import { Transaction } from "../mockdata";

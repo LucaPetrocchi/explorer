@@ -59,7 +59,7 @@ const navOptions = [
     subOptions: [
       {
         icon: <FaQuestionCircle />,
-        name: "Frequently Asked Questions",
+        name: "FAQ",
         url: "#",
       },
       {

@@ -1,5 +1,7 @@
 import { useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import { AiOutlineClose } from "react-icons/ai"
+import { FaSearch } from "react-icons/fa"
 
 export default function Search() {
   const inputRef = useRef<null | HTMLInputElement>()
@@ -28,30 +30,33 @@ export default function Search() {
   }
 
   return (
-    <form 
-      className="text-black mb-5 w-full relative"
-      onSubmit={handleSubmit}
-    >
-      <input 
-        type="text"
-        className="w-full"
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-        }}
-        placeholder="Input tx hash..."
-      />
-      { value != '' 
-        ? <button 
+    <div className="p-4 mb-5 border-2 rounded-2xl border-transparent bg-neutral-900
+    focus-within:border-white focus:border-white hover:border-white 
+    flex flex-row align-middle">
+      <FaSearch color="white" className="self-center" />
+      <form
+        className="text-black w-full px-2 self-center"
+        onSubmit={handleSubmit}
+      >
+        <input
+          type="text"
+          className="w-full bg-transparent text-white outline-none relative"
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value)
+          }}
+          placeholder="Input tx hash..."
+        />
+        {value != ''
+          ? <button
             type="button"
-            className="absolute right top-[50%] translate-y-[-50%] translate-x-[-30px]"
+            className="absolute right translate-x-[-20px]"
             onClick={clearValue}
           >
-            TET
+            <AiOutlineClose color="white" size={25} />
           </button>
-        : null }
-
-
-    </form>
+          : null}
+      </form>
+    </div>
   )
 }

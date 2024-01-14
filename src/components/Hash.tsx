@@ -1,5 +1,6 @@
 import copy from "copy-to-clipboard"
 import { useRef } from "react"
+import { FaCopy } from "react-icons/fa";
 
 type HashProps = {
   children: string;
@@ -16,7 +17,7 @@ export default function Hash({ children, ...props }: HashProps) {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row gap-2">
       <p
         ref={hashRef}
         {...props}
@@ -25,9 +26,10 @@ export default function Hash({ children, ...props }: HashProps) {
       </p>
       <button
         type="button"
+        className="right"
         onClick={copyHash}
       >
-        b
+        <FaCopy size={15} />
       </button>
     </div>
   )

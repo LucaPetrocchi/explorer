@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, cloneElement } from "react";
 
 type NavSubOptionProps = {
   subOptions: NavSubOptions[]
@@ -73,14 +73,37 @@ function NavOption({ icon, name, subOptions }: NavOptionProps) {
       ref={optionRef}
     >
       <button
-        className="bg-gray-500 p-3 w-fit h-fit flex align-middle"
+        className="bg-gray-500 p-3 w-fit h-fit 
+        flex align-middle 
+        hover:scale-[1.1] transition-all
+        group"
       >
         {icon}
+        <span
+          className="absolute right-6 top-0 pointer-events-none
+          scale-0 group-hover:scale-100 group-hover:right-14
+          w-auto p-2 m-2 
+          text-white bg-neutral-900 
+          transition-all"
+        >
+          {name}
+        </span>
       </button>
-      {
-        isClicked
-          ? <NavSubOption subOptions={subOptions} />
-          : null
+
+      {isClicked
+        ? (
+          <div
+            className="bg-neutral-950 border-neutral-800 border-2 z-10 flex flex-col justify-center absolute right-0 mt-2 pt-2"
+            onClick={
+              (e) => { e.stopPropagation() }
+            }
+          >
+            <h1 className="text-center text-lg mb-1">{name}</h1>
+            <hr className="w-[80%] border-neutral-600 place-self-center" />
+            <NavSubOption subOptions={subOptions} />
+          </div>
+        )
+        : null
       }
     </div>
   )
@@ -88,28 +111,24 @@ function NavOption({ icon, name, subOptions }: NavOptionProps) {
 
 function NavSubOption({ subOptions }: NavSubOptionProps) {
   return (
-    <div 
-      className="dropdown-menu absolute right-0 w-[100px]"
-      onClick={
-        (e) => {e.stopPropagation()}
+    <ul className="">
+      {subOptions.map((sop) => {
+        return (
+          <li className="block p-0 mx-3 w-[10rem]">
+            <a className="p-3 my-3 w-full bg-neutral-700 
+              hover:bg-neutral-500 hover:scale-[1.05] transition-all 
+              flex flex-row justify-between"
+              href={sop.url}
+            >
+              <div className="self-center">
+                {cloneElement(sop.icon, { "size": 25 })}
+              </div>
+              <p className="self-center">{sop.name}</p>
+            </a>
+          </li>
+        )
+      })
       }
-    >
-      <ul className="">
-        {subOptions.map((sop) => {
-          return (
-            <li className="block p-0">
-              <a className="block"
-                href={sop.url}
-              >
-                {sop.name}
-              </a>
-            </li>
-          )
-        })
-
-        }
-
-      </ul>
-    </div>
+    </ul>
   )
 }
