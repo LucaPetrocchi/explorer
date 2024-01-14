@@ -10,7 +10,7 @@ export default function TransactionBox({ data }: TransactionBoxProps) {
 
   return (
     <div className="grid grid-cols-12 columns-sm gap-2 text-center">
-      <div className="col-span-12 truncate flex justify-center">
+      <div className="col-span-12 flex justify-center">
         <Hash className="truncate w-full">{data.hashTx}</Hash>
       </div>
 
@@ -18,7 +18,7 @@ export default function TransactionBox({ data }: TransactionBoxProps) {
       <div className="col-span-2"> {data.amount}</div>
       <div className="col-span-5">{data.fees}</div>
 
-      <div className="col-span-5 truncate flex flex-col">
+      <div className="col-span-5 flex flex-col">
         <Hash className="truncate">{data.hashFrom}</Hash>
         <p>{data.transferFrom}</p>
       </div>

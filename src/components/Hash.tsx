@@ -31,7 +31,7 @@ export default function Hash({ children, ...props }: HashProps) {
         onClick={copyHash}
       >
         <FaCopy size={15} />
-        <Tooltip text="Copy to Clipboard" position="bottom-[-6px] left-6 hover:left-32" />
+        <Tooltip text="Copy to Clipboard" position="bottom-[-6px] right-6" />
       </button>
     </div>
   )
