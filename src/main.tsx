@@ -6,6 +6,7 @@ import Layout from './layouts/Layout'
 import Root from './routes/Root'
 import TransactionDetail from './routes/TransactionDetail'
 import ErrorPage from './error-page'
+import { AlertProvider } from './components/AlertContext'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AlertProvider>
+      <RouterProvider router={router} />
+    </AlertProvider>
   </React.StrictMode>,
 )

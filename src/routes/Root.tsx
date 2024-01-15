@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import ErrorPage from "../error-page";
 
-
 export default function Root() {
   const [data, setData] = useState<Transaction[] | null>()
   const [isLoading, setLoading] = useState(true)

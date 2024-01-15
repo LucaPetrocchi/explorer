@@ -2,12 +2,14 @@ import { useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { AiOutlineClose } from "react-icons/ai"
 import { FaSearch } from "react-icons/fa"
+import useAlert from "./AlertContext"
 
 export default function Search() {
   const inputRef = useRef<null | HTMLInputElement>()
   const [value, setValue] = useState('')
   const location = useLocation()
   const navigate = useNavigate()
+  const {setAlert} = useAlert()
 
   const hashrgxp = new RegExp("^[a-fA-F0-9]{64}$")
 
@@ -25,7 +27,7 @@ export default function Search() {
     if (test && navTo != location.pathname) {
       navigate(navTo)
     } else {
-      console.log("EPIC FAIL")
+      setAlert("Invalid Hash!", "alert")
     }
   }
 
