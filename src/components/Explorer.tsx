@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DateSince from "./DateSince";
 import Hash from "./Hash";
 import TransactionStatus from "./TransactionStatus";
+import { UppercaseFirst } from "../utils";
 
 type ExplorerProps = {
   data: Transaction[]
@@ -72,7 +73,7 @@ function TransactionCard({ transaction }: CardProps) {
       <td
         className="explorer-table-cell-custom"
       >
-        {transaction.transferTo} {`>`} {transaction.transferFrom}
+        {UppercaseFirst(transaction.transferTo)} {`>`} {UppercaseFirst(transaction.transferFrom)}
       </td>
       <td
         className="explorer-table-cell-custom"
